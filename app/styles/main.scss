@@ -1,7 +1,8 @@
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
-// bower:scss
-@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
-// endbower
+// bowe-r:scss
+// @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+// endbowe-r
+@import "/styles/bootstrap.darkly.css";
 
 .browsehappy {
   margin: 0.2em 0;
@@ -106,7 +107,17 @@ div.todoList {
 	}
 	
 	 button {
+     visibility: hidden;
 		float: right;
 	}
+  
+  .list-group-item:hover {
+    cursor: pointer;
+    background-color: gray
+  }
+  
+  .list-group-item:hover button {
+    visibility: visible;
+  }  
 }
 
