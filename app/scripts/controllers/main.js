@@ -8,7 +8,7 @@
  * Controller of the buildingSpasApp
  */
 angular.module('buildingSpasApp')
-  .controller('TodoCtrl', function(){
+  .controller('TodoCtrl', function($scope, $filter){
     var self = this;
     
     self.newTask = '';
@@ -17,6 +17,7 @@ angular.module('buildingSpasApp')
       { description: 'Make hotel reservations', done: false },
       { description: 'Chill', done: false },
     ];
+    self.pendingCount = self.taskList.length;
     self.addTodo = function(){
       self.taskList.push({
         description: self.newTask,
@@ -27,6 +28,14 @@ angular.module('buildingSpasApp')
     
     self.deleteTodo = function(index){
       self.taskList.splice(index,1);
+    };
+    
+    $scope.$watch('vm.taskList', function(nv, ov){
+      self.pendingCount = $filter('filter')(self.taskList, {done: false}).length; 
+    }, true);
+    
+    self.clearCompleted = function(){
+      self.taskList = $filter('filter')(self.taskList, {done: false});
     };
   })
   .controller('MainCtrl', function () {

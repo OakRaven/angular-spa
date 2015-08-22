@@ -1,4 +1,5 @@
 <div ng-controller="TodoCtrl as vm">
+	
 	<div class="row">
 		<div class="jumbotron">
 			<h1 style="font-size: 42pt;">What needs to be done?</h1>
@@ -12,12 +13,30 @@
 			</form>
 		</div>
 	</div>
+	
 	<div class="list-group todoList">
-		<div class="row list-group-item" ng-repeat="task in vm.taskList">
+		<div class="row list-group-item task" ng-repeat="task in vm.taskList">
 			<label ng-class="{strike: task.done}">
 				<input type="checkbox" ng-model="task.done"> {{task.description}}
 			</label>
 			<button class="btn btn-xs btn-danger" ng-click="vm.deleteTodo($index)">Delete</button>
 		</div>
 	</div>
+	
+	<div class="row">
+		<div class="col-xs-6">
+		<h4>
+			{{vm.pendingCount}}
+			<ng-pluralize count="vm.pendingCount" when="{one: 'item left', other: 'items left'}"></ng-pluralize>	
+		</h4>		
+		</div>
+		<div class="col-xs-6 text-right" ng-show="vm.pendingCount < vm.taskList.length">
+		<button class="btn btn-primary" ng-click="vm.clearCompleted()">Clear Completed</button>
+		</div>
+	</div>
+
+	<div class="row">
+		&nbsp;		
+	</div>
+	
 </div>

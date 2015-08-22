@@ -93,6 +93,26 @@ body {
 
 div.todoList {  
   
+  .task {
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    transition: all 0.3s;
+    overflow: hidden;
+  }
+  
+  .task.ng-leave.ng-leave-active,
+  .task.ng-enter {
+    height: 0;
+    padding: 0 15px;
+  }
+  
+  .task.ng-leave,
+  .task.ng-enter.ng-enter-active {
+    height: 50px;
+    padding: 10px 15px;
+  }
+  
   label.strike {
     text-decoration: line-through;
   }
