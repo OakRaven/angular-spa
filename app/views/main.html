@@ -1,0 +1,23 @@
+<div ng-controller="TodoCtrl as vm">
+	<div class="row">
+		<div class="jumbotron">
+			<h1 style="font-size: 42pt;">What needs to be done?</h1>
+			<form class="row" ng-submit="vm.addTodo()">
+				<div class="input-group input-group-lg">
+					<input type="text" ng-model="vm.newTask" class="form-control input-lg">
+					<span class="input-group-btn">
+						<button type="submit" class="btn btn-xs btn-default" ng-disabled="vm.newTask.length==0">Add</button>
+					</span>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="list-group todoList">
+		<div class="row list-group-item" ng-repeat="task in vm.taskList">
+			<label ng-class="{strike: task.done}">
+				<input type="checkbox" ng-model="task.done"> {{task.description}}
+			</label>
+			<button class="btn btn-xs btn-danger" ng-click="vm.deleteTodo($index)">Delete</button>
+		</div>
+	</div>
+</div>
